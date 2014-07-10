@@ -1,0 +1,6 @@
+runtime "node"
+exec "run.js"
+dir "src"
+file "package.json" 
+dir "node_modules"
+build "npm install"
