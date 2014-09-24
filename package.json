@@ -18,6 +18,7 @@
   "dependencies": {
     "bluebird": "~2.2.1",
     "iron_mq": "~0.2.3",
+    "lodash": "~2.4.1",
     "nconf": "~0.6.9",
     "request2": "~0.1.0"
   },

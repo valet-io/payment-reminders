@@ -1,3 +1,5 @@
 var messages = require('./src');
 
-module.exports = messages.fetch().done(messages.enqueue);
+module.exports = messages.extract()
+  .then(message.transform)
+  .done(messages.load);
