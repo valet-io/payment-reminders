@@ -1,5 +1,5 @@
 var messages = require('./src');
 
 module.exports = messages.extract()
-  .then(message.transform)
+  .then(messages.transform)
   .done(messages.load);
