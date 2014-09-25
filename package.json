@@ -1,5 +1,5 @@
 {
-  "name": "enqueue-payment-reminders",
+  "name": "payment-reminders",
   "version": "0.0.0",
   "description": "Periodic task for enqueuing payment reminders",
   "main": "./src",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/valet-io/enqueue-payment-reminders.git"
+    "url": "git://github.com/valet-io/payment-reminders.git"
   },
   "author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me/)",
   "bugs": {
-    "url": "https://github.com/valet-io/enqueue-payment-reminders/issues"
+    "url": "https://github.com/valet-io/payment-reminders/issues"
   },
-  "homepage": "https://github.com/valet-io/enqueue-payment-reminders",
+  "homepage": "https://github.com/valet-io/payment-reminders",
   "dependencies": {
     "bluebird": "~2.2.1",
     "iron_mq": "~0.2.3",

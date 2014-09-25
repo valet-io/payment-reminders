@@ -1,4 +1,4 @@
-enqueue-payment-reminders
+payment-reminders
 =========================
 
-Periodic task for enqueuing payment reminders
+Periodic task for queueing payment reminders
