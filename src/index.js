@@ -6,7 +6,7 @@ var config  = require('./config');
 var ironmq  = require('iron_mq');
 var queue   = Promise.promisifyAll(new ironmq.Client({
   token: config.iron.token,
-  project_id: config.iron.project,
+  project_id: config.iron.project_id,
   queue_name: 'payment-reminders'
 }));
 
