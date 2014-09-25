@@ -11,3 +11,5 @@ env:
   - secure: 'J915s7PWQXAlUMhsAxQrbMxPAL3mVUJQUPtbxAiDlVd7Rlznawohocqi76RMTwSfmTeRxHl2DT8O+IUsE1zcDoh+4wyu/qkdyP+2MAt0Ij0UMSO7VvFhZx85+/BOe6JNHb0eK6Wc7E1tHkaNUmoFGXsVPJd3Rv/b1nMCzEBP4RA='
   # APP
   - secure: 'XdgaGacRdmLlITgzpPsI9HP9OwZRHpwoi3bJ8uvIXfvJ0nH+KOrRSp9xUg6H2WG8laHFDm43fVCwkmwXendWvBVrFb2IO/cfV/Vq7OZdD4mCiFK+9CUTmpJuKAtfQbzTPbHQj4U2kOh7DOKY6DAs7a9QsYIUMSAqvAi7UimecQ8='
+after_success: 
+- sh ./deploy.sh
