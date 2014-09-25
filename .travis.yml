@@ -13,3 +13,6 @@ env:
   - secure: 'XdgaGacRdmLlITgzpPsI9HP9OwZRHpwoi3bJ8uvIXfvJ0nH+KOrRSp9xUg6H2WG8laHFDm43fVCwkmwXendWvBVrFb2IO/cfV/Vq7OZdD4mCiFK+9CUTmpJuKAtfQbzTPbHQj4U2kOh7DOKY6DAs7a9QsYIUMSAqvAi7UimecQ8='
 after_success: 
 - sh ./deploy.sh
+notifications:
+  slack:
+    secure: B678FKsBm6x5qt0cN5kW0tS88ImAXr0SSRu09g1kuJwMG8Q5LoR9tXYKItH6KaQcFYMYrZRitf43UcoD5DHvpqkMDjn7l01yDPLHiazTJu480FNDrLp+jvN80AhAE4dZXCTn0arohr7HYLaaI/ZMRnnCSCOJ3MAGJG7r22UEpJ4=
