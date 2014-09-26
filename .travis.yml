@@ -1,16 +1,6 @@
 language: node_js
 node_js:
 - '0.10'
-env:
-  global:
-  # IRON_PROJECT_ID
-  - secure: 'QBj/X/zbuh3DLsw7cNa3R/jAnDFIRaya79pdZgYxuVd1+RFaFl0cp852v90WepDWF0GLAzzBqX2q7RNiq4lXrdkalWuZo4YLY7O0hy8dOwDA1xw0qqMsOk3pxSNdMgXbfCQ2LtA6ON2pVWiJOEFr3Sr8w42sqz2M47/RPvM7iKA='
-  # IRON_TOKEN
-  - secure: 'J5McZOi3PLUpwBaAXlZWNLGQye0TguAzYMRe9Uy5z0wvGL3kJxzwhrXOXVbK99eJHFcLsqxGHCEetdRz0GsLQQI7IQUvwMcl8b12G//kNqS9cKBmdF533q5c1pyOKvML9ov0yYKVS5AIkX8JXdfhkOaUHX2eHWd9ZhjNidu7jDs='
-  # API
-  - secure: 'J915s7PWQXAlUMhsAxQrbMxPAL3mVUJQUPtbxAiDlVd7Rlznawohocqi76RMTwSfmTeRxHl2DT8O+IUsE1zcDoh+4wyu/qkdyP+2MAt0Ij0UMSO7VvFhZx85+/BOe6JNHb0eK6Wc7E1tHkaNUmoFGXsVPJd3Rv/b1nMCzEBP4RA='
-  # APP
-  - secure: 'OPE6v6pIUenx0Q7fQaWhXaDyY0laxSvYbgBpzCST+9skjN1T4xGqh90zc25YEkqLPuWvQ9pmTx6vTiPrxYz4FjnYFEIS8P1Bkq9DDgbk/UWdoeBYejG8MjptuTora4T8WrW8GBP4ri2M1RhnzN9u1B4nrZHhObnH/1ivd4A51sY='
 after_success: 
 - sh ./scripts/deploy.sh
 notifications:
