@@ -8,7 +8,7 @@ var Bitly   = require('bitly');
 var queue   = Promise.promisifyAll(new ironmq.Client({
   token: config.iron.token,
   project_id: config.iron.project_id,
-  queue_name: 'payment-reminders'
+  queue_name: 'sms-messages'
 }));
 var bitly   = Promise.promisifyAll(new Bitly(config.bitly.username, config.bitly.api_key));
 
