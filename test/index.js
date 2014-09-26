@@ -54,7 +54,11 @@ describe('enqueue-payment-reminders', function () {
     it('generates message objects for pledges', function () {
       sinon.stub(Bitly.prototype, 'shorten')
         .withArgs('https://pledge.valet.io/payments/create?pledge=0')
-        .yieldsAsync(null, 'http://bit.ly/shortened');
+        .yieldsAsync(null, {
+          data: {
+            url: 'http://bit.ly/shortened'
+          }
+        });
       return messages.transform([{
         id: 0,
         donor: {

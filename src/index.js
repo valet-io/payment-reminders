@@ -24,6 +24,8 @@ exports.transform = function (pledges) {
   return Promise.map(pledges, function (pledge) {
     var longUrl = config.app + '/payments/create?pledge=' + pledge.id;
     return bitly.shortenAsync(longUrl)
+      .get('data')
+      .get('url')
       .then(function (shortUrl) {
         pledge.payment_url_short = shortUrl;
       })
