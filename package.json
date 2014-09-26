@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/valet-io/payment-reminders",
   "dependencies": {
+    "bitly": "~1.2.5",
     "bluebird": "~2.2.1",
     "iron_mq": "~0.2.3",
     "lodash": "~2.4.1",

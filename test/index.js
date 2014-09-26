@@ -5,6 +5,7 @@ var config = {
     token: 't',
     project: 'p'
   },
+  bitly: {},
   api: 'https://api.valet.io',
   app: 'https://pledge.valet.io'
 };
@@ -13,6 +14,7 @@ var expect     = chai.expect;
 var sinon      = require('sinon');
 var proxyquire = require('proxyquire');
 var nock       = require('nock');
+var Bitly      = require('bitly');
 var ironmq     = require('iron_mq');
 
 sinon.spy(ironmq, 'Client');
@@ -50,7 +52,10 @@ describe('enqueue-payment-reminders', function () {
   describe('#transform', function () {
 
     it('generates message objects for pledges', function () {
-      expect(messages.transform([{
+      sinon.stub(Bitly.prototype, 'shorten')
+        .withArgs('https://pledge.valet.io/payments/create?pledge=0')
+        .yieldsAsync(null, 'http://bit.ly/shortened');
+      return messages.transform([{
         id: 0,
         donor: {
           phone: '900'
@@ -60,12 +65,15 @@ describe('enqueue-payment-reminders', function () {
             name: 'My Great Org'
           }
         }
-      }]))
-      .to.have.length(1)
-      .and.property(0)
-      .that.deep.equals({
-        to: '900',
-        body: 'Reminder! Complete your My Great Org pledge: https://pledge.valet.io/payments/create?pledge=0'
+      }])
+      .then(function (messages) {
+        expect(messages)
+          .to.have.length(1)
+          .and.property(0)
+          .that.deep.equals({
+            to: '900',
+            body: 'Reminder! Complete your My Great Org pledge:\n\nhttp://bit.ly/shortened'
+          });
       });
     });
 
