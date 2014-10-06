@@ -22,7 +22,12 @@ var messages   = proxyquire('../', {
   './config': config
 });
 
-describe('enqueue-payment-reminders', function () {
+describe('payment-reminders', function () {
+
+  var sandbox = sinon.sandbox.create();
+  afterEach(function () {
+    sandbox.restore();
+  });
 
   describe('#extract', function () {
 
@@ -52,7 +57,7 @@ describe('enqueue-payment-reminders', function () {
   describe('#transform', function () {
 
     it('generates message objects for pledges', function () {
-      sinon.stub(Bitly.prototype, 'shorten')
+      sandbox.stub(Bitly.prototype, 'shorten')
         .withArgs('https://pledge.valet.io/payments/create?pledge=0')
         .yieldsAsync(null, {
           data: {
@@ -88,13 +93,22 @@ describe('enqueue-payment-reminders', function () {
     var queue = ironmq.Client.firstCall.returnValue;
 
     it('posts the pledges to the queue', function () {
-      sinon.stub(queue, 'post').yieldsAsync(null);
+      sandbox.stub(queue, 'post').yieldsAsync(null);
       return messages.load([{id: 0}])
         .then(function () {
           expect(queue.post)
             .to.have.been.called;
           expect(JSON.parse(queue.post.firstCall.args[0][0]))
             .to.deep.equal({id: 0});
+        });
+    });
+
+    it('is a noop with no pledges', function () {
+      sandbox.stub(queue, 'post').yieldsAsync(new Error());
+      return messages.load([])
+        .then(function () {
+          expect(queue.post)
+            .to.not.have.been.called;
         });
     });
 

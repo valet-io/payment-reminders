@@ -43,8 +43,10 @@ exports.transform = function (pledges) {
 };
 
 
-exports.load = function (pledges) {
-  return Promise.map(pledges, JSON.stringify)
-    .bind(queue)
-    .then(queue.postAsync);
-};
+exports.load = Promise.method(function (pledges) {
+  if (pledges && pledges.length) {
+    return Promise.map(pledges, JSON.stringify)
+      .bind(queue)
+      .then(queue.postAsync);
+  }
+});
