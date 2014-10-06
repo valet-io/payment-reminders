@@ -37,7 +37,7 @@ describe('enqueue-payment-reminders', function () {
 
     it('resolves unpaid pledges', function () {
       api
-        .get('/pledges?paid=false&expand[]=donor&expand[]=campaign&expand[]=campaign.organization')
+        .get('/pledges?paid=false&cancelled=false&expand[]=donor&expand[]=campaign&expand[]=campaign.organization')
         .reply(200, [
           {id: 0}
         ]);

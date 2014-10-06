@@ -17,7 +17,7 @@ var template = _.template('Reminder! Complete your ${ campaign.organization.name
 var Request = require('request2');
 
 exports.extract = function () {
-  return new Request('GET', config.api + '/pledges?paid=false&expand[]=donor&expand[]=campaign&expand[]=campaign.organization').send();
+  return new Request('GET', config.api + '/pledges?paid=false&cancelled=false&expand[]=donor&expand[]=campaign&expand[]=campaign.organization').send();
 };
 
 exports.transform = function (pledges) {
