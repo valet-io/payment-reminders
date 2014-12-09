@@ -12,7 +12,7 @@ var queue   = Promise.promisifyAll(new ironmq.Client({
 }));
 var bitly   = Promise.promisifyAll(new Bitly(config.bitly.username, config.bitly.api_key));
 
-var template = _.template('Reminder! Complete your ${ campaign.organization.name } pledge:\n\n${ payment_url_short }');
+var template = _.template('Reminder! Complete your ${ campaign.organization.name } pledge:\n\n${ link }');
 
 var Request = require('request2');
 
@@ -27,7 +27,7 @@ exports.transform = function (pledges) {
       .get('data')
       .get('url')
       .then(function (shortUrl) {
-        pledge.payment_url_short = shortUrl;
+        pledge.link = shortUrl;
       })
       .return(pledge);
   },
@@ -37,7 +37,7 @@ exports.transform = function (pledges) {
   .map(function (pledge) {
     return {
       to: pledge.donor.phone,
-      body: template(pledge)
+      body: pledge.campaign.reminder_template ? _.template(pledge.campaign.reminder_template)(pledge) : template(pledge)
     };
   });
 };

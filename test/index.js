@@ -56,14 +56,17 @@ describe('payment-reminders', function () {
 
   describe('#transform', function () {
 
-    it('generates message objects for pledges', function () {
-      sandbox.stub(Bitly.prototype, 'shorten')
+    before(function () {
+      sinon.stub(Bitly.prototype, 'shorten')
         .withArgs('https://pledge.valet.io/payments/create?pledge=0')
         .yieldsAsync(null, {
           data: {
             url: 'http://bit.ly/shortened'
           }
         });
+    });
+
+    it('generates message objects for pledges', function () {
       return messages.transform([{
         id: 0,
         donor: {
@@ -82,6 +85,31 @@ describe('payment-reminders', function () {
           .that.deep.equals({
             to: '900',
             body: 'Reminder! Complete your My Great Org pledge:\n\nhttp://bit.ly/shortened'
+          });
+      });
+    });
+
+    it('can generate a message object with a custom template', function () {
+      return messages.transform([{
+        id: 0,
+        donor: {
+          name: 'Ben',
+          phone: '900'
+        },
+        campaign: {
+          reminder_template: 'Thank you ${ donor.name }! Pay here: ${ link }',
+          organization: {
+            name: 'My Great Org'
+          }
+        }
+      }])
+      .then(function (messages) {
+        expect(messages)
+          .to.have.length(1)
+          .and.property(0)
+          .that.deep.equals({
+            to: '900',
+            body: 'Thank you Ben! Pay here: http://bit.ly/shortened'
           });
       });
     });
