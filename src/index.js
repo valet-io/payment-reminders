@@ -32,7 +32,7 @@ exports.transform = function (pledges) {
       .return(pledge);
   },
   {
-    concurrency: 5
+    concurrency: 1
   })
   .map(function (pledge) {
     return {
