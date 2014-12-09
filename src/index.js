@@ -34,6 +34,9 @@ exports.transform = function (pledges) {
   {
     concurrency: 1
   })
+  .tap(function (messages) {
+    console.log(messages);
+  })
   .map(function (pledge) {
     return {
       to: pledge.donor.phone,
