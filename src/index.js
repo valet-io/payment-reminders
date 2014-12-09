@@ -29,6 +29,7 @@ exports.transform = function (pledges) {
       .then(function (shortUrl) {
         pledge.link = shortUrl;
       })
+      .delay(1)
       .return(pledge);
   },
   {
