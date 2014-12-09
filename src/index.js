@@ -29,14 +29,11 @@ exports.transform = function (pledges) {
       .then(function (shortUrl) {
         pledge.link = shortUrl;
       })
-      .delay(1)
+      .delay(2000)
       .return(pledge);
   },
   {
     concurrency: 1
-  })
-  .tap(function (messages) {
-    console.log(messages);
   })
   .map(function (pledge) {
     return {
