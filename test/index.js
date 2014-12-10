@@ -56,6 +56,8 @@ describe('payment-reminders', function () {
 
   describe('#transform', function () {
 
+    this.timeout(5000);
+
     before(function () {
       sinon.stub(Bitly.prototype, 'shorten')
         .withArgs('https://pledge.valet.io/payments/create?pledge=0')
